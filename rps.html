@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function computerPlay(){
+
+        };
+        function game(){
+        //let humanPlay = prompt("Enter your move", "Rock, Paper, or Scissors");
+
+            function getComputerChoice(){
+                let moves = ["Rock","Paper","Scissors"];
+                let roll = Math.floor(Math.random() * 3);
+                return moves[roll];
+            }
+        
+            function playRound(playerSelection, computerSelection) {
+        // your code here!
+        }
+ 
+        const playerSelection = "rock";
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    };
+    </script>
+</body>
+</html>
