@@ -8,26 +8,36 @@
 </head>
 <body>
     <script>
-        function computerPlay(){
+        function getComputerChoice(){
+                let aMoves = ["Rock","Paper","Scissors"];
+                let iRoll = Math.floor(Math.random() * 3);
+                let sComputerSelection = aMoves[iRoll];
+                return sComputerSelection;
+        };
+        //let sPlayerSelection = prompt("Enter your move", "Rock, Paper, or Scissors"); 
+
+        
+        function playRound(sPlayerSelection, sComputerSelection) {
+            sLowerPlayerSelection = sPlayerSelection.toLowerCase();
+            sLowerComputerSelection = sComputerSelection.toLowerCase();
+            let sRock = "rock";
+            let sPaper = "paper";
+            let sScissors = "scissors";
+            let sDraw = "No winnner";
+            
+            if (sLowerPlayerSelection == sRock && sLowerComputerSelection == sScissors){return "You win! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sScissors + "!"}
+            else if (sLowerPlayerSelection == sPaper && sLowerComputerSelection == sRock){return "You win! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sRock + "!"}
+            else if (sLowerPlayerSelection == sScissors && sLowerComputerSelection == sPaper){return "You win! " + sScissors.charAt(0).toUpperCase() + sScissors.slice(1) + " beats " + sPaper + "!"}
+            else if (sLowerPlayerSelection == sRock && sLowerComputerSelection == sPaper){return "You lose! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sRock + "!"}
+            else if (sLowerPlayerSelection == sPaper && sLowerComputerSelection == sScissors){return "You lose! " + sScissors.charAt(0).toUpperCase() + sScissors.slice(1) + " beats " + sPaper + "!"}
+            else if (sLowerPlayerSelection == sScissors && sLowerComputerSelection == sRock){return "You lose! " + sRock.charAt(0).toUpperCase() + sRock.slice(1) + " beats " + sScissors + "!"}
+            else if (sLowerPlayerSelection == sLowerComputerSelection){return sDraw}
 
         };
-        function game(){
-        //let humanPlay = prompt("Enter your move", "Rock, Paper, or Scissors");
-
-            function getComputerChoice(){
-                let moves = ["Rock","Paper","Scissors"];
-                let roll = Math.floor(Math.random() * 3);
-                return moves[roll];
-            }
         
-            function playRound(playerSelection, computerSelection) {
-        // your code here!
-        }
- 
-        const playerSelection = "rock";
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    };
+        function game(){       
+        
+        };
     </script>
 </body>
 </html>
