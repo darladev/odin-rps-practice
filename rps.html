@@ -8,35 +8,61 @@
 </head>
 <body>
     <script>
+        let sRock = "rock";
+        let sPaper = "paper";
+        let sScissors = "scissors";
+        let sDraw = "Draw";
+        let sPlayerSelection;
+        let sComputerSelection;
+        let iComputerScore = 0; 
+        let iPlayerScore = 0;
+        let sResult;
+
         function getComputerChoice(){
-                let aMoves = ["Rock","Paper","Scissors"];
+                let aMoves = ["rock","paper","scissors"];
                 let iRoll = Math.floor(Math.random() * 3);
                 let sComputerSelection = aMoves[iRoll];
                 return sComputerSelection;
         };
-        //let sPlayerSelection = prompt("Enter your move", "Rock, Paper, or Scissors"); 
 
-        
-        function playRound(sPlayerSelection, sComputerSelection) {
-            sLowerPlayerSelection = sPlayerSelection.toLowerCase();
-            sLowerComputerSelection = sComputerSelection.toLowerCase();
-            let sRock = "rock";
-            let sPaper = "paper";
-            let sScissors = "scissors";
-            let sDraw = "No winnner";
-            
-            if (sLowerPlayerSelection == sRock && sLowerComputerSelection == sScissors){return "You win! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sScissors + "!"}
-            else if (sLowerPlayerSelection == sPaper && sLowerComputerSelection == sRock){return "You win! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sRock + "!"}
-            else if (sLowerPlayerSelection == sScissors && sLowerComputerSelection == sPaper){return "You win! " + sScissors.charAt(0).toUpperCase() + sScissors.slice(1) + " beats " + sPaper + "!"}
-            else if (sLowerPlayerSelection == sRock && sLowerComputerSelection == sPaper){return "You lose! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sRock + "!"}
-            else if (sLowerPlayerSelection == sPaper && sLowerComputerSelection == sScissors){return "You lose! " + sScissors.charAt(0).toUpperCase() + sScissors.slice(1) + " beats " + sPaper + "!"}
-            else if (sLowerPlayerSelection == sScissors && sLowerComputerSelection == sRock){return "You lose! " + sRock.charAt(0).toUpperCase() + sRock.slice(1) + " beats " + sScissors + "!"}
-            else if (sLowerPlayerSelection == sLowerComputerSelection){return sDraw}
+        function getPlayerChoice(){
+            do{
+                let sPlayerMove = prompt("Enter your move", "Rock, Paper, or Scissors");
+                sPlayerSelection = sPlayerMove.toLowerCase();                        
+                }
+                while(sPlayerSelection != sRock  && sPlayerSelection != sPaper && sPlayerSelection != sScissors)
+                return sPlayerSelection;
+            }
 
+        function playRound(sPlayerSelection, sComputerSelection) {                   
+            if (sPlayerSelection == sRock && sComputerSelection == sScissors)         {return "You win! " + sRock.charAt(0).toUpperCase() + sRock.slice(1) + " beats " + sScissors + "!"}
+            else if (sPlayerSelection == sPaper && sComputerSelection == sRock)       {return "You win! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sRock + "!"}
+            else if (sPlayerSelection == sScissors && sComputerSelection == sPaper)   {return "You win! " + sScissors.charAt(0).toUpperCase() + sScissors.slice(1) + " beats " + sPaper + "!"}
+            else if (sPlayerSelection == sRock && sComputerSelection == sPaper)       {return "You lose! " + sPaper.charAt(0).toUpperCase() + sPaper.slice(1) + " beats " + sRock + "!"}
+            else if (sPlayerSelection == sPaper && sComputerSelection == sScissors)   {return "You lose! " + sScissors.charAt(0).toUpperCase() + sScissors.slice(1) + " beats " + sPaper + "!"}
+            else if (sPlayerSelection == sScissors && sComputerSelection == sRock)    {return "You lose! " + sRock.charAt(0).toUpperCase() + sRock.slice(1) + " beats " + sScissors + "!"}
+            else if (sPlayerSelection == sComputerSelection)                          {return sDraw}
         };
         
-        function game(){       
-        
+        function game(){
+            let iComputerScore = 0; 
+            let iPlayerScore = 0;
+            for (let i = 0; i < 5; i++){
+                let iRound = i + 1;
+                let sResult = playRound(getPlayerChoice(), getComputerChoice());
+
+                if(sResult.includes("win")){iPlayerScore++; console.log("Player score+")}
+                else if(sResult.includes("lose")){iComputerScore++; console.log("Console score+")}
+                else if(sResult.includes("Draw")){console.log("Draw")};
+                
+                console.log("Round " + iRound + " score: " + iPlayerScore + " - "+ iComputerScore);
+                
+                if(i == 4){
+                    if(iPlayerScore > iComputerScore){console.log("Congratulations! You win the game!")}
+                    else if(iPlayerScore < iComputerScore){console.log("Damnation! You lose the game!")}
+                    else if(iPlayerScore = iComputerScore){console.log("It's a draw!")}
+                }
+            }    
         };
     </script>
 </body>
